@@ -1,0 +1,39 @@
+% Stanford University PhD thesis style -- modifications to the report style
+% This is unofficial so you should always double check against the
+% Registrar's office rules
+% See http://library.stanford.edu/research/bibliography-management/latex-and-bibtex
+% 
+% Example of use below
+% See the suthesis-2e.sty file for documentation
+%
+\documentclass{report}
+\usepackage{suthesis-2e}
+\dept{Computer Science}
+
+\begin{document}
+\title{How to Write Theses\\
+            With Two Line Titles}
+\author{John Henry Candidate}
+\principaladviser{John Parker}
+\firstreader{John Green}
+\secondreader{John BigBooty}
+\thirdreader{Jane Supernumerary} %if needed
+\fourthreader{Severus Snape} %if needed
+ 
+\beforepreface
+\prefacesection{Preface}
+This thesis tells you all you need to know about...
+\prefacesection{Acknowledgments}
+I would like to thank...
+\afterpreface
+
+\chapter{Introduction}
+...
+\chapter{Conclusions}
+...
+\appendix
+\chapter{A Long Proof}
+...
+\bibliographystyle{plain}
+\bibliography{mybib}
+\end{document}
