@@ -1,0 +1,19 @@
+sudo: required
+services:
+- docker
+script:
+- docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
+  /bin/sh -c "tectonic --keep-intermediates --reruns 0 main.tex; biber main; tectonic
+  main.tex"
+- (($(stat -c%s main.pdf) > 4000000 )) || exit 1
+- mv main.pdf thesis-example.pdf
+deploy:
+  provider: releases
+  api_key:
+    secure: H01G+WZa5yFC/IjVW6tuhHzG3+UqTU7n9r0uX81Cn3bIODWgg31RSFf5sMPIxO1fC8xdudRNiMd/esm4BGAuJpnXIekqwXaU/MS/dWkVAQRbeRSZrMRzjNGRDQmmTHC/+hXRSJIyhUJvi7lcKmw8iY4xdl8xwMyUNMIgbL6f15Y3/yKVWRKiVrgbemHmrN/AhO9ZFO5B5pzT1byJDmH/iUVSqlw2hK7USE3Cu8GEUMAr7PB78gvcKqp3f6gYfmwLtMJdAL3uZJpIsTnpFxdDilh172sUM4Sb7mq/u8M1MPeVaJ5upU2bU9l7vSCfioX5hJ841IOSQw0zN721GU6WEs5X02HwsZsKKQa/uQfkdkbduILnIHPuEReziJsWkFswf1IJ/vcklVAUNZQF98a0Uov1eviy0BthxGhnqwaSgD6b5WAwqK6+C4q1VIypJU6/Vr/rEaZFZai3bbByaNqpOg6AP8q37TRf5k90Iy6C7DLAsh3RTdyinSsU5+TivHw3yXTRpEjYc3vnmLcGIPbjwbSSUBLV1l+g4AXeG5MtvEwxs/z0VqEYT/lo0w54rXhKsQFUJejTs06oQEXNYE5FmeAkSkiIklhkzx7Vtib0uVH7EhNj7o03pqPiZuptbE7YbFQHDue8aVbuNUb21/hJn4v9bpZeUpEY9FsnIKek9J0=
+  file: thesis-example.pdf
+  skip_cleanup: true
+  draft: true
+  on:
+    repo: dcroote/stanford-thesis-example
+    tags: true
