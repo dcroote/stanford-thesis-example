@@ -5,7 +5,7 @@ script:
 - docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
   /bin/sh -c "tectonic --keep-intermediates --reruns 0 main.tex; biber main; tectonic
   main.tex"
-- (($(stat -c%s main.pdf) > 4000000 )) || exit 1
+- (($(stat -c%s main.pdf) > 140000 )) || exit 1
 - mv main.pdf thesis-example.pdf
 deploy:
   provider: releases
