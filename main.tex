@@ -7,7 +7,7 @@
 % See the suthesis-2e.sty file for documentation
 %
 \documentclass[12pt]{report}
-\usepackage{suthesis-2e}  % Stanford thesis style file
+\usepackage{suthesis-2e}  % (modified) Stanford thesis style file
 
 % useful packages
 \usepackage{graphicx}  % figures
@@ -16,11 +16,11 @@
 \usepackage{tabularx}  % nice single page tables
 \usepackage{longtable}  % tables spanning multiple pages
 \usepackage{hyperref}  % URLs
-\usepackage[autostyle, english = american]{csquotes}
+\usepackage[autostyle, english = american]{csquotes}  % quote orientation
 \MakeOuterQuote{"}
 
 % use png first, otherwise pdf
-% (useful for faster compile times, for final doc switch order)
+% (useful for faster compile times, for final submission switch order)
 \DeclareGraphicsExtensions{.png,.pdf}
 
 \begin{document}
@@ -37,6 +37,7 @@
 % no signature or copyright pages in online submission
 % (they are added by the library)
 
+% including chapters, no .tex extension necessary
 \beforepreface
 \include{preface_abstract}
 \include{preface_acknowledgements}
@@ -50,9 +51,10 @@
 % \chapter{A Long Proof}
 
 \bibliographystyle{unsrt}  % can change to fit your field e.g. pnas2009
-\bibliography{mybib}
+\bibliography{mybib}  % no .bib extension necessary
 
 % adds a non-numbered signature page at end (for printing on ACID-FREE paper)
+% (remember to comment out when submitting final version)
 \onlinesignature
 
 \end{document}
