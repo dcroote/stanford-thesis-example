@@ -6,9 +6,16 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Compile LaTeX document
+
+      - name: Compile LaTeX
         uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: main.pdf
