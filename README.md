@@ -1,6 +1,6 @@
 # Stanford LaTeX Thesis Example
 
-[![Build Status](https://travis-ci.org/dcroote/stanford-thesis-example.svg?branch=master)](https://travis-ci.org/dcroote/stanford-thesis-example)
+![Build](https://github.com/dcroote/stanford-thesis-example/workflows/Build/badge.svg?branch=master)
 
 ## Preview
 [View the latest PDF](https://github.com/dcroote/stanford-thesis-example/releases/latest/download/thesis-example.pdf) or click on the image below.
@@ -26,4 +26,4 @@ This template adopts a modular structure where each chapter is a separate `.tex`
 Pull requests are welcome for improvements or additions that will benefit others.
 
 ## Testing
-This example thesis is compiled on Travis CI with the `dxjoke/tectonic-docker` docker image.
+This example thesis is compiled with [GitHub Actions](https://github.com/dcroote/stanford-thesis-example/actions), specifically the [GitHub Action for LaTex](https://github.com/marketplace/actions/github-action-for-latex) containing a full TeXLive environment.
