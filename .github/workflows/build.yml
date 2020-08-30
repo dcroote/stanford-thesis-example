@@ -1,4 +1,4 @@
-name: Build
+name: CI
 
 on: [push, pull_request]
 
@@ -28,7 +28,7 @@ jobs:
   release_and_publish:
     needs: build_latex
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/x')
+    if: startsWith(github.ref, 'refs/tags/v')
     steps:
 
       - name: Download PDF artifact
