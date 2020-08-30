@@ -1,6 +1,6 @@
 # Stanford LaTeX Thesis Example
 
-![Build](https://github.com/dcroote/stanford-thesis-example/workflows/Build/badge.svg?branch=master)
+![Build status](https://github.com/dcroote/stanford-thesis-example/workflows/CI/badge.svg?branch=master)
 
 ## Preview
 [View the latest PDF](https://github.com/dcroote/stanford-thesis-example/releases/latest/download/thesis-example.pdf) or click on the image below.
