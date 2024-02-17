@@ -6,36 +6,34 @@ jobs:
   compile_latex_and_upload_artifact:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Compile LaTeX
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
 
       - shell: bash
         run: |
-            mv main.pdf thesis-example.pdf
+          mv main.pdf thesis-example.pdf
         # rename is for backwards compatibility
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: thesis-example.pdf
           name: thesis-example
 
   download_artifact_and_upload_release_asset:
-    needs: compile_latex_and_upload_artifact  # compilation must have completed successfully
+    needs: compile_latex_and_upload_artifact # compilation must have completed successfully
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')  # tags follow semantic versioning i.e. v0.2.1
+    if: startsWith(github.ref, 'refs/tags/v') # tags follow semantic versioning i.e. v0.2.1
     steps:
-
       - name: Download PDF artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
-          name: thesis-example  # same name as uploaded artifact
+          name: thesis-example # same name as uploaded artifact
 
       - name: Create Release
         id: create_release
@@ -52,7 +50,7 @@ jobs:
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # handled automatically
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # handled automatically
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./thesis-example.pdf
