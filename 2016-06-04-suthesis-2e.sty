@@ -113,10 +113,6 @@
 %   Improved instructions for how to use.
 %   DEFAULTING to online submission, use hardcopy option 
 %
-% Modified June 2019 by Derek Croote
-%   changed spelling of 'Adviser' to 'Advisor'
-%   adjusted signature page spacing for 12pt font
-
 %%%%%
 %%%%%   PRELIMS
 %%%%%
@@ -246,10 +242,10 @@ The following switches allow for special title pages (not all are current)
         \secondreader{the second reader's name}
         \thirdreader{optional third reader's name}
         \fourthreader{optional fourth reader's name}
-        \setlength{\signaturespace}{.3in}
-                - default is .5in, adjusted to fit all
+        \setlength{\signaturespace}{.5in} 
+                - default is .5in, can be adjusted to fit all
                 signatures in one page
-        \setlength{\certificatewidth}{6in}
+\setlength{\certificatewidth}{5in}
                 - width of the certificate on the signature page, may
                 want to adjust depending on exact font used.
         \submitdate{month year in which submitted to GPO}
@@ -335,7 +331,7 @@ smaller print.
 % \author, \title are defined in report; here are the rest of the
 % front matter defining macros
 \def\dept#1{\gdef\@dept{#1}}
-\def\advis@r{Advisor} % default spelling
+\def\advis@r{Adviser} % default spelling
 \def\principaladviser#1{\gdef\@principaladviser{#1}}
 \def\principaladvisor#1{\gdef\@principaladviser{#1}\gdef\advis@r{Advisor}}
 \def\coprincipaladvisor#1{\gdef\@coprincipaladviser{#1}\gdef\advis@r{Co-Advisor}}
@@ -495,10 +491,10 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
 
 
 \newlength{\signaturespace}
-\setlength{\signaturespace}{.3in}
+\setlength{\signaturespace}{.5in}
 
 \newlength{\certificatewidth}
-\setlength{\certificatewidth}{6in}
+\setlength{\certificatewidth}{5in}
 
 \def\phdcertification{I certify that I have read this dissertation and
   that, in my opinion, it is fully adequate in scope and quality as a
@@ -520,8 +516,8 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
 \par
 \vspace{\signaturespace}
 %\hbox to 4in{\hfil\shortstack{\vrule width 3in height 0.4pt\\ #1}}
-\hbox to 6in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
-    0.3pt depth 0pt\\ #1\end{tabular}}
+\hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
+    0.4pt depth 0pt\\ #1\end{tabular}}
 \end{minipage}
 \end{flushright}}
 
@@ -529,11 +525,11 @@ AND THE COMMITTEE ON GRADUATE STUDIES}
 \begin{flushright}
 \begin{minipage}{\certificatewidth}
 \parindent=0pt
-Approved for the Stanford University Committee on Graduate Studies.
+\hfill Approved for the Stanford University Committee on Graduate Studies
 \par
 \vspace{\signaturespace}
-\hbox to 6in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
-    0.3pt depth 0pt\end{tabular}}
+\hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
+    0.4pt depth 0pt\end{tabular}}
 \end{minipage}
 \end{flushright}}
 

@@ -1,6 +1,6 @@
 # Stanford LaTeX Thesis Example
 
-[![Build status](https://github.com/dcroote/stanford-thesis-example/workflows/CI/badge.svg?branch=master)](https://github.com/dcroote/stanford-thesis-example/actions?query=workflow%3ACI+branch%3Amaster)
+[![Build status](https://github.com/dcroote/stanford-thesis-example/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/dcroote/stanford-thesis-example/actions/workflows/build.yml?query=branch%3Amaster)
 
 ## Preview
 
@@ -10,7 +10,7 @@
 
 ## About
 
-The hope is that this example thesis saves you time that I and countless others before me spent on the minutiae of writing a thesis in LaTeX. It combines a slightly modified version (more on this below) of the existing [Stanford thesis style](https://web.stanford.edu/~emma/suthesis/suthesis-2e.sty) ([more Stanford information here](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0)) with a template for including figures, tables, inline references, equations, symbols, a bibliography, a signature page, etc...
+The hope is that this example thesis saves you time that I and countless others before me spent on the minutiae of writing a thesis in LaTeX. It combines a slightly modified version (more on this below) of the existing [Stanford thesis style](https://web.stanford.edu/~emma/suthesis/suthesis-2e.sty) ([archived here](./2016-06-04-suthesis-2e.sty), [more Stanford information here](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0)) with a template for including figures, tables, inline references, equations, symbols, a bibliography, a signature page, etc...
 I used this style as the basis for my (officially completed) thesis and thus believe it adheres to Stanford's policies, but I make no guarantees.
 
 This thesis defaults to electronic submission using `\onlinetrue` in `suthesis-2e.sty`. Correspondingly, the copyright and signature pages _ii_ and _iii_, respectively, are excluded as they are [added by the Library](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0#orderandcontent) upon submission. The last page of this example thesis is a signature page you can print, but remember to comment out `\onlinesignature` in `main.tex` before uploading your final version. **Remember to print the signature page on acid-free paper.** Likewise for the title page.
