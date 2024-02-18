@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Use the following if you would like to cite this template."
+authors:
+  - family-names: "Croote"
+    given-names: "Derek"
+    orcid: "https://orcid.org/0000-0003-4907-1865"
+  - family-names: "Joseph"
+    given-names: "Pallas"
+  - family-names: "Emma"
+    given-names: "Pease"
+title: "Stanford LaTeX Thesis Example"
+date-released: 2019-06-07
+url: "https://github.com/dcroote/stanford-thesis-example"
