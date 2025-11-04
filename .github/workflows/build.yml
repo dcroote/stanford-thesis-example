@@ -24,7 +24,7 @@ jobs:
         # rename is for backwards compatibility
 
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           path: thesis-example.pdf
           name: thesis-example
