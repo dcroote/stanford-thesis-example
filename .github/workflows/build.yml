@@ -33,30 +33,25 @@ jobs:
     needs: compile_latex_and_upload_artifact # compilation must have completed successfully
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v') # tags follow semantic versioning i.e. v0.2.1
+    permissions:
+      actions: read # download the PDF artifact from this workflow run
+      contents: write # create the draft release and upload the PDF
     steps:
       - name: Download PDF artifact
         uses: actions/download-artifact@v8
         with:
           name: thesis-example # same name as uploaded artifact
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      # actions/create-release and actions/upload-release-asset are archived
+      # and declare runs.using: node12. Runners removed Node 20 on 2026-09-23,
+      # so those actions can no longer run. gh is preinstalled on ubuntu-latest.
+      - name: Create draft release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: true
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # handled automatically
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./thesis-example.pdf
-          asset_name: thesis-example.pdf
-          asset_content_type: application/pdf
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" ./thesis-example.pdf \
+            --draft \
+            --title "$GITHUB_REF_NAME" \
+            --target "$GITHUB_SHA" \
+            --notes "" \
+            --verify-tag
