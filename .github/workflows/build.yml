@@ -6,12 +6,18 @@ on:
   schedule:
     - cron: '0 0 15 * *'
 
+# Read-only unless a job says otherwise. The release job is the only writer.
+permissions:
+  contents: read
+
 jobs:
   compile_latex_and_upload_artifact:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v4
@@ -32,24 +38,20 @@ jobs:
   download_artifact_and_upload_release_asset:
     needs: compile_latex_and_upload_artifact # compilation must have completed successfully
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') # tags follow semantic versioning i.e. v0.2.1
+    # Tag pushes only. Pull requests never receive this write token.
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     permissions:
-      actions: read # download the PDF artifact from this workflow run
-      contents: write # create the draft release and upload the PDF
+      actions: read # download this run's artifact
+      contents: write # GitHub has no release-only scope; this is the minimum
     steps:
-      - name: Download PDF artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: thesis-example # same name as uploaded artifact
-
-      # actions/create-release and actions/upload-release-asset are archived
-      # and declare runs.using: node12. Runners removed Node 20 on 2026-09-23,
-      # so those actions can no longer run. gh is preinstalled on ubuntu-latest.
+      # No checkout and no third-party action. The only program that sees the
+      # token is gh, using the job's built-in GITHUB_TOKEN (not a PAT).
       - name: Create draft release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" ./thesis-example.pdf \
+          gh run download "$GITHUB_RUN_ID" --name thesis-example --dir "$RUNNER_TEMP/release"
+          gh release create "$GITHUB_REF_NAME" "$RUNNER_TEMP/release/thesis-example.pdf" \
             --draft \
             --title "$GITHUB_REF_NAME" \
             --target "$GITHUB_SHA" \
