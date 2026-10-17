@@ -2,9 +2,16 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
+    tags:
+      - v*
   pull_request:
   schedule:
     - cron: '0 0 15 * *'
+
+permissions:
+  contents: read
 
 jobs:
   compile_latex_and_upload_artifact:
@@ -12,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v4
@@ -32,31 +41,19 @@ jobs:
   download_artifact_and_upload_release_asset:
     needs: compile_latex_and_upload_artifact # compilation must have completed successfully
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v') # tags follow semantic versioning i.e. v0.2.1
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') # tags follow semantic versioning i.e. v0.2.1
+    permissions:
+      actions: read
+      contents: write
     steps:
-      - name: Download PDF artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: thesis-example # same name as uploaded artifact
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Create draft release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: true
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # handled automatically
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./thesis-example.pdf
-          asset_name: thesis-example.pdf
-          asset_content_type: application/pdf
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "$GITHUB_RUN_ID" --name thesis-example --dir "$RUNNER_TEMP/release"
+          gh release create "$GITHUB_REF_NAME" "$RUNNER_TEMP/release/thesis-example.pdf" \
+            --draft \
+            --title "$GITHUB_REF_NAME" \
+            --target "$GITHUB_SHA" \
+            --notes "" \
+            --verify-tag
