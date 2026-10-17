@@ -6,7 +6,6 @@ on:
   schedule:
     - cron: '0 0 15 * *'
 
-# Read-only unless a job says otherwise. The release job is the only writer.
 permissions:
   contents: read
 
@@ -38,14 +37,11 @@ jobs:
   download_artifact_and_upload_release_asset:
     needs: compile_latex_and_upload_artifact # compilation must have completed successfully
     runs-on: ubuntu-latest
-    # Tag pushes only. Pull requests never receive this write token.
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') # tags follow semantic versioning i.e. v0.2.1
     permissions:
-      actions: read # download this run's artifact
-      contents: write # GitHub has no release-only scope; this is the minimum
+      actions: read
+      contents: write
     steps:
-      # No checkout and no third-party action. The only program that sees the
-      # token is gh, using the job's built-in GITHUB_TOKEN (not a PAT).
       - name: Create draft release
         env:
           GH_TOKEN: ${{ github.token }}
