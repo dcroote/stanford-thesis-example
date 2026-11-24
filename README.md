@@ -17,13 +17,7 @@ I used this style as the basis for my (officially completed) thesis and thus bel
 
 This thesis defaults to electronic submission using `\onlinetrue` in `suthesis-2e.sty`. For the PDF you upload to Axess, **omit the entire signature page (not just the signatures) and the copyright page; keep the title page**. Stanford's [format requirements](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0#orderandcontent) explain that the submission system inserts its own copyright and signature pages into the final copy stored by Stanford Libraries.
 
-The online setting omits these pages from the front matter, but the explicit `\onlinesignature` command near the end of `main.tex` still appends a signature page to this example. **Comment out that command before compiling your final upload:**
-
-```tex
-% \onlinesignature
-```
-
-Check the resulting PDF to ensure that no signature or copyright page remains. Keep the title page and the template's preliminary-page numbering, which reserves pages ii and iii for the pages Stanford inserts.
+The online setting omits the copyright and signature pages from the front matter. The optional `\onlinesignature` command in `main.tex`, which appends a signature page for a personal printed copy, is commented out by default. Leave it disabled for electronic submission. The title page is retained, and preliminary-page numbering reserves pages ii and iii for the pages Stanford inserts.
 
 Reader approval is a separate requirement. Ph.D., J.S.D., D.M.A., and Engineer students should collect email approvals from each reading committee member and upload those approvals to the **Reading Committee Signature Page Sign Off** eForm in Axess, following Stanford's [reader approval instructions](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/how-submit-your). The eForm deadline is two days before the dissertation/thesis submission deadline; check the [deadlines for your quarter](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses#deadlines) and the [submission checklist](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/submit-your/checklist) before submitting.
 
