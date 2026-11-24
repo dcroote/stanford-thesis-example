@@ -13,7 +13,19 @@
 The hope is that this example thesis saves you time that I and countless others before me spent on the minutiae of writing a thesis in LaTeX. It combines a slightly modified version (more on this below) of the existing [Stanford thesis style](https://web.stanford.edu/~emma/suthesis/suthesis-2e.sty) ([archived here](./2016-06-04-suthesis-2e.sty), [more Stanford information here](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0)) with a template for including figures, tables, inline references, equations, symbols, a bibliography, a signature page, etc...
 I used this style as the basis for my (officially completed) thesis and thus believe it adheres to Stanford's policies, but I make no guarantees.
 
-This thesis defaults to electronic submission using `\onlinetrue` in `suthesis-2e.sty`. Correspondingly, the copyright and signature pages _ii_ and _iii_, respectively, are excluded as they are [added by the Library](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0#orderandcontent) upon submission. The last page of this example thesis is a signature page you can print, but remember to comment out `\onlinesignature` in `main.tex` before uploading your final version. **Remember to print the signature page on acid-free paper.** Likewise for the title page.
+### Electronic submission and reader approvals
+
+This thesis defaults to electronic submission using `\onlinetrue` in `suthesis-2e.sty`. For the PDF you upload to Axess, **omit the entire signature page (not just the signatures) and the copyright page; keep the title page**. Stanford's [format requirements](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/prepare-your-work-0#orderandcontent) explain that the submission system inserts its own copyright and signature pages into the final copy stored by Stanford Libraries.
+
+The online setting omits these pages from the front matter, but the explicit `\onlinesignature` command near the end of `main.tex` still appends a signature page to this example. **Comment out that command before compiling your final upload:**
+
+```tex
+% \onlinesignature
+```
+
+Check the resulting PDF to ensure that no signature or copyright page remains. Keep the title page and the template's preliminary-page numbering, which reserves pages ii and iii for the pages Stanford inserts.
+
+Reader approval is a separate requirement. Ph.D., J.S.D., D.M.A., and Engineer students should collect email approvals from each reading committee member and upload those approvals to the **Reading Committee Signature Page Sign Off** eForm in Axess, following Stanford's [reader approval instructions](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/how-submit-your). The eForm deadline is two days before the dissertation/thesis submission deadline; check the [deadlines for your quarter](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses#deadlines) and the [submission checklist](https://studentservices.stanford.edu/my-academics/earn-my-degree/graduate-degree-progress/dissertations-and-theses/submit-your/checklist) before submitting.
 
 ### Structure
 
