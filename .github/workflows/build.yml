@@ -48,6 +48,7 @@ jobs:
     steps:
       - name: Create draft release
         env:
+          GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run download "$GITHUB_RUN_ID" --name thesis-example --dir "$RUNNER_TEMP/release"
